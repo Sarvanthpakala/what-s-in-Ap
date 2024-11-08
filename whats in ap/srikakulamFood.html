@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Quiz App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Math Quiz App</h1>
+        <div id="quizContainer">
+            <div id="question"></div>
+            <input type="number" id="answerInput" placeholder="Your answer">
+            <button id="submitAnswerButton">Submit Answer</button>
+            <button id="nextQuestionButton" class="hidden">Next Question</button>
+        </div>
+        <div id="result" class="hidden">
+            <h2>Your Score: <span id="score"></span></h2>
+            <button id="restartButton">Restart Quiz</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+#quizContainer {
+    margin-bottom: 20px;
+}
+
+input[type="number"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: calc(100% - 120px);
+}
+
+button {
+    padding: 10px;
+    background: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1976d2;
+}
+
+.hidden {
+    display: none;
+}
+</style>
+<script>
+    let currentQuestionIndex = 0;
+let score = 0;
+
+const questions = [
+    {
+        question: "What is 5 + 3?",
+        answer: 8
+    },
+    {
+        question: "What is 12 - 4?",
+        answer: 8
+    },
+    {
+        question: "What is 6 x 7?",
+        answer: 42
+    },
+    {
+        question: "What is 20 ÷ 4?",
+        answer: 5
+    },
+    {
+        question: "What is 15 + 6?",
+        answer: 21
+    }
+];
+
+const questionElement = document.getElementById('question');
+const answerInput = document.getElementById('answerInput');
+const submitAnswerButton = document.getElementById('submitAnswerButton');
+const nextQuestionButton = document.getElementById('nextQuestionButton');
+const resultElement = document.getElementById('result');
+const scoreElement = document.getElementById('score');
+const restartButton = document.getElementById('restartButton');
+
+// Load the first question
+loadQuestion();
+
+submitAnswerButton.addEventListener('click', checkAnswer);
+nextQuestionButton.addEventListener('click', loadNextQuestion);
+restartButton.addEventListener('click', restartQuiz);
+
+function loadQuestion() {
+    const currentQuestion = questions[currentQuestionIndex];
+    questionElement.textContent = currentQuestion.question;
+    answerInput.value = '';
+    nextQuestionButton.classList.add('hidden');
+}
+
+function checkAnswer() {
+    const userAnswer = parseInt(answerInput.value);
+    const currentQuestion = questions[currentQuestionIndex];
+
+    if (userAnswer === currentQuestion.answer) {
+        score++;
+    }
+
+    if (currentQuestionIndex < questions.length - 1) {
+        nextQuestionButton.classList.remove('hidden');
+    } else {
+        displayResult();
+    }
+}
+
+function loadNextQuestion() {
+    currentQuestionIndex++;
+    loadQuestion();
+}
+
+function displayResult() {
+    questionElement.classList.add('hidden');
+    answerInput.classList.add('
+</script>
+</html>
